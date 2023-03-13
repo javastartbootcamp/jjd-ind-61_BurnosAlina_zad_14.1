@@ -5,18 +5,19 @@ import java.util.*;
 
 public class NumbersReader {
 
-    Map<String, List<String>> readFile(String fileName) throws IOException {
+    Map<Integer, List<Integer>> readFile(String fileName) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        Map<String, List<String>> numbers = new TreeMap<>();
+        Map<Integer, List<Integer>> numbers = new TreeMap<>();
         String line;
         while ((line = reader.readLine()) != null) {
-            if (!numbers.containsKey(line)) {
-                List<String> list = new ArrayList<>();
-                list.add(line);
-                numbers.put(line, list);
+            int number = Integer.parseInt(line);
+            if (!numbers.containsKey(number)) {
+                List<Integer> list = new ArrayList<>();
+                list.add(number);
+                numbers.put(number, list);
             } else {
-                List<String> list = numbers.get(line);
-                list.add(line);
+                List<Integer> list = numbers.get(number);
+                list.add(number);
             }
         }
         return numbers;

@@ -9,9 +9,9 @@ public class Main {
         String fileName = "numbers.txt";
         NumbersReader reader = new NumbersReader();
         try {
-            Map<String, List<String>> numbers = reader.readFile(fileName);
-            Collection<List<String>> values = numbers.values();
-            for (List<String> value : values) {
+            Map<Integer, List<Integer>> numbers = reader.readFile(fileName);
+            Collection<List<Integer>> values = numbers.values();
+            for (List<Integer> value : values) {
                 System.out.println(value.get(0) + " - liczba wystąpień " + value.size());
             }
         } catch (IOException e) {
