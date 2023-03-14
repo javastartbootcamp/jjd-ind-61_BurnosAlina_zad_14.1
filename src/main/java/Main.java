@@ -1,7 +1,6 @@
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Main {
 
@@ -9,10 +8,10 @@ public class Main {
         String fileName = "numbers.txt";
         NumbersReader reader = new NumbersReader();
         try {
-            Map<Integer, List<Integer>> numbers = reader.readFile(fileName);
-            Collection<List<Integer>> values = numbers.values();
-            for (List<Integer> value : values) {
-                System.out.println(value.get(0) + " - liczba wystąpień " + value.size());
+            Map<Integer, Integer> numbers = reader.readFile(fileName);
+            Set<Map.Entry<Integer, Integer>> entries = numbers.entrySet();
+            for (Map.Entry<Integer, Integer> entry : entries) {
+                System.out.println(entry.getKey() + " - liczba wystąpień " + entry.getValue());
             }
         } catch (IOException e) {
             System.out.println("Nie udało się odczytać pliku.");

@@ -1,23 +1,22 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
 public class NumbersReader {
 
-    Map<Integer, List<Integer>> readFile(String fileName) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        Map<Integer, List<Integer>> numbers = new TreeMap<>();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            int number = Integer.parseInt(line);
+    private static final int FIRST_OCCURRENCE = 1;
+
+    Map<Integer, Integer> readFile(String fileName) throws IOException {
+        Scanner scanner = new Scanner(new File(fileName));
+        Map<Integer, Integer> numbers = new TreeMap<>();
+        while (scanner.hasNextLine()) {
+            int number = scanner.nextInt();
             if (!numbers.containsKey(number)) {
-                List<Integer> list = new ArrayList<>();
-                list.add(number);
-                numbers.put(number, list);
+                numbers.put(number, FIRST_OCCURRENCE);
             } else {
-                List<Integer> list = numbers.get(number);
-                list.add(number);
+                int value = numbers.get(number);
+                value++;
+                numbers.put(number, value);
             }
         }
         return numbers;
